@@ -11,7 +11,7 @@ tests.setTimeoutErrors = function () {
 };
 
 tests.ajaxErrors = function() {
-  var ajax = require('ajax');
+  var ajax = require('../lib/ajax');
   var ajaxCallback = function(reqStatus, reqBody, request) {
     console.logx('broken call');
   };
@@ -25,11 +25,11 @@ tests.geolocationErrors = function () {
 };
 
 tests.loadAppinfo = function() {
-  console.log('longName: ' + require('appinfo').longName);
+  console.log('longName: ' + require('/package').pebble.displayName);
 };
 
 tests.resolveBultinImagePath = function() {
-  var ImageService = require('ui/imageservice');
+  var ImageService = require('./imageservice');
   console.log('image-logo-splash = resource #' + ImageService.resolve('images/logo_splash.png'));
 };
 

@@ -1,6 +1,6 @@
-var myutil = require('myutil');
-var package = require('smartpackage/package');
-var simply = require('simply/simply');
+var myutil = require('../lib/myutil');
+var package = require('./package');
+var simply = require('../simply/simply');
 
 var packageImpl = module.exports;
 

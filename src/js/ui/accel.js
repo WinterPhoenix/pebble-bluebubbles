@@ -1,12 +1,12 @@
-var Emitter = require('emitter');
+var Emitter = require('../lib/emitter');
 
 var Accel = new Emitter();
 
 module.exports = Accel;
 
-var WindowStack = require('ui/windowstack');
-var Window = require('ui/window');
-var simply = require('ui/simply');
+var WindowStack = require('./windowstack');
+var Window = require('./window');
+var simply = require('./simply');
 
 var state;
 

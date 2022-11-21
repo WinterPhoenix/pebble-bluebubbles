@@ -1,8 +1,7 @@
-var util2 = require('lib/util2');
-var myutil = require('lib/myutil');
-var safe = require('lib/safe');
-var ajax = require('lib/ajax');
-var appinfo = require('appinfo');
+var util2 = require('../lib/util2');
+var myutil = require('../lib/myutil');
+var ajax = require('../lib/ajax');
+var appinfo = require('app_package.json');
 
 var Settings = module.exports;
 
@@ -10,7 +9,7 @@ var parseJson = function(data) {
   try {
     return JSON.parse(data);
   } catch (e) {
-    safe.warn('Invalid JSON in localStorage: ' + (e.message || '') + '\n\t' + data);
+    console.warn('Invalid JSON in localStorage: ' + (e.message || '') + '\n\t' + data);
   }
 };
 
@@ -62,7 +61,7 @@ Settings.getBaseOptions = function() {
 };
 
 Settings._getDataKey = function(path, field) {
-  path = path || appinfo.uuid;
+  path = path || appinfo.pebble.uuid;
   return field + ':' + path;
 };
 

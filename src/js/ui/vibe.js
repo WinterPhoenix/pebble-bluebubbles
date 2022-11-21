@@ -1,4 +1,4 @@
-var simply = require('ui/simply');
+var simply = require('./simply');
 
 var Vibe = module.exports;
 

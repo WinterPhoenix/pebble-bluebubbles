@@ -1,8 +1,8 @@
-var ajax = require('ajax');
-var util2 = require('util2');
-var myutil = require('myutil');
-var Settings = require('settings/settings');
-var simply = require('simply');
+var ajax = require('../lib/ajax');
+var util2 = require('../lib/util2');
+var myutil = require('../lib/myutil');
+var Settings = require('../settings/settings');
+var simply = require('../simply');
 
 var package = module.exports;
 

@@ -1,6 +1,6 @@
-var PNG = require('vendor/png');
+var PNG = require('../vendor/png');
 
-var PNGEncoder = require('lib/png-encoder');
+var PNGEncoder = require('./png-encoder');
 
 var image = {};
 

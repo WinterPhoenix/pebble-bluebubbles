@@ -1,21 +1,21 @@
-var Color = require('color');
-var struct = require('struct');
-var util2 = require('util2');
-var myutil = require('myutil');
-var Platform = require('platform');
-var Wakeup = require('wakeup');
-var Timeline = require('timeline');
-var Resource = require('ui/resource');
-var Accel = require('ui/accel');
-var Voice = require('ui/voice');
-var ImageService = require('ui/imageservice');
-var WindowStack = require('ui/windowstack');
-var Window = require('ui/window');
-var Menu = require('ui/menu');
-var StageElement = require('ui/element');
-var Vector2 = require('vector2');
+var Color = require('../lib/color');
+var struct = require('../lib/struct');
+var util2 = require('../lib/util2');
+var myutil = require('../lib/myutil');
+var Platform = require('../platform');
+var Wakeup = require('../wakeup');
+var Timeline = require('../timeline');
+var Resource = require('./resource');
+var Accel = require('./accel');
+var Voice = require('./voice');
+var ImageService = require('./imageservice');
+var WindowStack = require('./windowstack');
+var Window = require('./window');
+var Menu = require('./menu');
+var StageElement = require('./element');
+var Vector2 = require('../lib/vector2');
 
-var simply = require('ui/simply');
+var simply = require('./simply');
 
 /**
  * This package provides the underlying implementation for the ui/* classes.

@@ -1,0 +1,29 @@
+{
+  "name": "pebblejs",
+  "author": "Meiguro",
+  "version": "1.0.0",
+  "repository": "pebble/pebblejs",
+  "license": "MIT",
+  "files": ["dist.zip"],
+  "keywords": ["pebble-package"],
+  "devDependencies": {
+    "coffee-script": "^1.11.1"
+  },
+  "pebble": {
+    "projectType": "package",
+    "sdkVersion": "3",
+    "capabilities": [
+      "configurable"
+    ],
+    "targetPlatforms": [
+      "aplite",
+      "basalt",
+      "chalk",
+      "diorite"
+    ],
+    "resources": {
+      "media": [
+      ]
+    }
+  }
+}
