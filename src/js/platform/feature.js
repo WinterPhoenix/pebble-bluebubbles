@@ -1,5 +1,5 @@
-var Vector2 = require('vector2');
-var Platform = require('platform');
+var Vector2 = require('../lib/vector2');
+var Platform = require('./platform');
 
 var Feature = module.exports;
 

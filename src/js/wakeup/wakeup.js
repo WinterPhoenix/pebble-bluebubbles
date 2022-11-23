@@ -1,7 +1,7 @@
-var util2 = require('util2');
-var Emitter = require('emitter');
-var Settings = require('settings');
-var simply = require('ui/simply');
+var util2 = require('../lib/util2');
+var Emitter = require('../lib/emitter');
+var Settings = require('../settings');
+var simply = require('../ui/simply');
 
 var Wakeup = function() {
   this.init();

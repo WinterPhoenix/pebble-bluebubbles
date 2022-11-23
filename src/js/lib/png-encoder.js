@@ -6,7 +6,7 @@
  * @license MIT
  */
 
-var Zlib = require('vendor/zlib');
+var Zlib = require('../vendor/zlib');
 
 var png = {};
 

@@ -1,4 +1,4 @@
-var moment = require('vendor/moment');
+var moment = require('../vendor/moment');
 
 var Clock = module.exports;
 

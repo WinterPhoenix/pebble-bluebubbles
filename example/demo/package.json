@@ -1,0 +1,27 @@
+{
+  "name": "Demo Pebble.js App",
+  "author": "MakeAwesomeHappen",
+  "version": "1.0.0",
+  "keywords": ["pebble-app"],
+  "private": true,
+  "dependencies": {
+    "pebblejs": "1.0.0"
+  },
+  "pebble": {
+    "displayName": "Demo Pebble.js App",
+    "uuid": "133215f0-cf20-4c05-997b-3c9be5a64e5b",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "aplite",
+      "basalt",
+      "chalk"
+    ],
+    "watchapp": {
+      "watchface": false
+    },
+    "resources": {
+      "media": []
+    }
+  }
+}

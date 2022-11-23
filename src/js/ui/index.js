@@ -1,18 +1,18 @@
 var UI = {};
 
-UI.Vector2 = require('vector2');
-UI.Window = require('ui/window');
-UI.Card = require('ui/card');
-UI.Menu = require('ui/menu');
-UI.Rect = require('ui/rect');
-UI.Line = require('ui/line');
-UI.Circle = require('ui/circle');
-UI.Radial = require('ui/radial');
-UI.Text = require('ui/text');
-UI.TimeText = require('ui/timetext');
-UI.Image = require('ui/image');
-UI.Inverter = require('ui/inverter');
-UI.Vibe = require('ui/vibe');
-UI.Light = require('ui/light');
+UI.Vector2 = require('../lib/vector2');
+UI.Window = require('./window');
+UI.Card = require('./card');
+UI.Menu = require('./menu');
+UI.Rect = require('./rect');
+UI.Line = require('./line');
+UI.Circle = require('./circle');
+UI.Radial = require('./radial');
+UI.Text = require('./text');
+UI.TimeText = require('./timetext');
+UI.Image = require('./image');
+UI.Inverter = require('./inverter');
+UI.Vibe = require('./vibe');
+UI.Light = require('./light');
 
 module.exports = UI;

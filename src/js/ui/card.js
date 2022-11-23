@@ -1,10 +1,10 @@
-var util2 = require('util2');
-var myutil = require('myutil');
-var Emitter = require('emitter');
-var WindowStack = require('ui/windowstack');
-var Propable = require('ui/propable');
-var Window = require('ui/window');
-var simply = require('ui/simply');
+var util2 = require('../lib/util2');
+var myutil = require('../lib/myutil');
+var Emitter = require('../lib/emitter');
+var WindowStack = require('./windowstack');
+var Propable = require('./propable');
+var Window = require('./window');
+var simply = require('./simply');
 
 var textProps = [
   'title',

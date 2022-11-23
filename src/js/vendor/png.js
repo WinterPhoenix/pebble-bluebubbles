@@ -22,7 +22,7 @@
 
 var Zlib;
 if (typeof require !== 'undefined') {
-  Zlib = require('zlib');
+  Zlib = require('./zlib');
 } else {
   Zlib = window.Zlib;
 }

@@ -1,8 +1,8 @@
-var imagelib = require('lib/image');
-var myutil = require('myutil');
-var Feature = require('platform/feature');
-var Resource = require('ui/resource');
-var simply = require('ui/simply');
+var imagelib = require('../lib/image');
+var myutil = require('../lib/myutil');
+var Feature = require('../platform/feature');
+var Resource = require('./resource');
+var simply = require('./simply');
 
 var ImageService = module.exports;
 

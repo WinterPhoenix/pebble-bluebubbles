@@ -1,7 +1,7 @@
-var util2 = require('util2');
-var Emitter = require('emitter');
-var WindowStack = require('ui/windowstack');
-var simply = require('ui/simply');
+var util2 = require('../lib/util2');
+var Emitter = require('../lib/emitter');
+var WindowStack = require('./windowstack');
+var simply = require('./simply');
 
 var Stage = function(stageDef) {
   this.state = stageDef || {};

@@ -1,10 +1,10 @@
-var util2 = require('util2');
-var myutil = require('myutil');
-var Emitter = require('emitter');
-var Platform = require('platform');
-var WindowStack = require('ui/windowstack');
-var Window = require('ui/window');
-var simply = require('ui/simply');
+var util2 = require('../lib/util2');
+var myutil = require('../lib/myutil');
+var Emitter = require('../lib/emitter');
+var Platform = require('../platform');
+var WindowStack = require('./windowstack');
+var Window = require('./window');
+var simply = require('./simply');
 
 var defaults = {
   status: true,
