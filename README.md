@@ -15,7 +15,10 @@ Pebble.js applications run on your phone. They have access to all the resources 
 
  * With the Pebble SDK
 
-   This option allows you to customize Pebble.js. Follow the [Pebble SDK installation instructions](http://help.rebble.io/sdk) to install the SDK on your computer and [fork this project](http://github.com/rebble/pebblejs) on Github. 
+   This option allows you to customize Pebble.js. Follow the [Pebble SDK installation instructions](http://help.rebble.io/sdk) to install the SDK on your computer and Install the pebble package.
+   ```
+   pebble package install pebblejs
+   ```
    
    The main entry point for your application is in the `src/js/app.js` file. For projects with multiple files, you may move `src/js/app.js` to `src/js/app/index.js` instead and create new files under `src/js/app`.
 
