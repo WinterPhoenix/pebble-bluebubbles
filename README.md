@@ -1,8 +1,6 @@
 Pebble.js
 =========
 
-[![Build Status](https://travis-ci.org/pebble/pebblejs.svg?branch=master)](https://travis-ci.org/pebble/pebblejs)
-
 Pebble.js lets you write beautiful Pebble applications completely in JavaScript.
 
 Pebble.js applications run on your phone. They have access to all the resources of your phone (internet connectivity, GPS, almost unlimited memory, etc). Because they are written in JavaScript they are also perfect to make HTTP requests and connect your Pebble to the internet.
@@ -15,19 +13,13 @@ Pebble.js applications run on your phone. They have access to all the resources 
 
 ## Getting Started
 
- * In CloudPebble
-
-   The easiest way to use Pebble.js is in [CloudPebble](https://cloudpebble.net). Select the 'Pebble.js' project type when creating a new project.
-
-   [Build a Pebble.js application now in CloudPebble >](https://cloudpebble.net)
-
  * With the Pebble SDK
 
-   This option allows you to customize Pebble.js. Follow the [Pebble SDK installation instructions](https://developer.pebble.com/sdk/install/) to install the SDK on your computer and [fork this project](http://github.com/pebble/pebblejs) on Github. 
+   This option allows you to customize Pebble.js. Follow the [Pebble SDK installation instructions](http://help.rebble.io/sdk) to install the SDK on your computer and [fork this project](http://github.com/rebble/pebblejs) on Github. 
    
    The main entry point for your application is in the `src/js/app.js` file. For projects with multiple files, you may move `src/js/app.js` to `src/js/app/index.js` instead and create new files under `src/js/app`.
 
-   [Install the Pebble SDK on your computer >](http://developer.pebble.com/sdk/install/)
+   [Install the Pebble SDK on your computer >](http://help.rebble.io/sdk)
 
 
 Pebble.js applications follow modern JavaScript best practices. To get started, you just need to call `require('ui')` to load the UI module and start building user interfaces.
@@ -104,8 +96,6 @@ To add an image in your application, edit the `appinfo.json` file and add your i
 }
 ````
 
-> If you are using CloudPebble, you can add images in your project configuration.
-
 To reference your image in Pebble.js, you can use the `name` field or the `file` field.
 
 ````js
@@ -134,7 +124,7 @@ wind.show();
 ## Using Fonts
 [Using Fonts]: #using-fonts
 
-You can use any of the Pebble system fonts in your Pebble.js applications. Please refer to [this Pebble Developer's blog post](https://developer.pebble.com/blog/2013/07/24/Using-Pebble-System-Fonts/) for a list of all the Pebble system fonts. When referring to a font, using lowercase with dashes is recommended. For example, `GOTHIC_18_BOLD` becomes `gothic-18-bold`.
+You can use any of the Pebble system fonts in your Pebble.js applications. Please refer to [this guide to](https://developer.rebble.io/developer.pebble.com/guides/app-resources/system-fonts/index.html) for a list of all the Pebble system fonts. When referring to a font, using lowercase with dashes is recommended. For example, `GOTHIC_18_BOLD` becomes `gothic-18-bold`.
 
 ````js
 var Vector2 = require('vector2');
@@ -153,7 +143,7 @@ wind.show();
 ## Using Color
 [Using Color]: #using-color
 
-You can use color in your Pebble.js applications by specifying them in the supported [Color Formats]. Use the [Pebble Color Picker](https://developer.pebble.com/guides/tools-and-resources/color-picker/) to find colors to use. Be sure to maintain [Readability and Contrast] when developing your application.
+You can use color in your Pebble.js applications by specifying them in the supported [Color Formats]. Use the [Pebble Color Picker](https://developer.rebble.io/developer.pebble.com/guides/tools-and-resources/color-picker/index.html) to find colors to use. Be sure to maintain [Readability and Contrast] when developing your application.
 
 ### Color Formats
 [Color Formats]: #color-formats
@@ -219,7 +209,7 @@ var card = new UI.Card({
 card.show();
 ````
 
-Whether you have a color Pebble or not, you will want to test your app in all platforms. You can see how your app looks in multiple platforms with the following local SDK command or by changing the current platform in CloudPebble.
+Whether you have a color Pebble or not, you will want to test your app in all platforms. You can see how your app looks in multiple platforms with the following local SDK command.
 
 > `pebble build && pebble install --emulator=aplite && pebble install --emulator=basalt && pebble install --emulator=chalk`
 
@@ -300,7 +290,7 @@ Pebble.js provides the [Feature] module so that you may perform feature detectio
 ### Using Feature
 [Using Feature]: #using-feature
 
-During the development of your Pebble.js application, you will want to test your application on all platforms. You can use the following local SDK command or change the current platform in CloudPebble.
+During the development of your Pebble.js application, you will want to test your application on all platforms. You can use the following local SDK command.
 
 > `pebble build && pebble install --emulator=aplite && pebble install --emulator=basalt && pebble install --emulator=chalk`
 
@@ -406,7 +396,7 @@ Exporting is possible by modifying or setting `module.exports` within the requir
 
 ### Pebble
 
-The `Pebble` object from [PebbleKit JavaScript](https://developer.pebble.com/guides/pebble-apps/pebblekit-js/) is available as a global variable. Some of the methods it provides have Pebble.js equivalents. When available, it is recommended to use the Pebble.js equivalents as they have more documented features and cleaner interfaces.
+The `Pebble` object from [PebbleKit JavaScript](https://developer.rebble.io/developer.pebble.com/docs/pebblekit-js/index.html) is available as a global variable. Some of the methods it provides have Pebble.js equivalents. When available, it is recommended to use the Pebble.js equivalents as they have more documented features and cleaner interfaces.
 
 This table lists the current Pebble.js equivalents:
 
@@ -431,7 +421,7 @@ Use `Pebble` when there is no Pebble.js alternative. Currently, these are the `P
 
 ### localStorage
 
-`localStorage` is [available for your use](https://developer.pebble.com/guides/communication/using-pebblekit-js/#using-localstorage), but consider using the [Settings] module instead which provides an alternative interface that can save and load JavaScript objects for you.
+`localStorage` is [available for your use](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), but consider using the [Settings] module instead which provides an alternative interface that can save and load JavaScript objects for you.
 
 ````js
 var Settings = require('settings');
@@ -443,7 +433,7 @@ console.log("Player's name is " + playerInfo.name);
 
 ### XMLHttpRequest
 
-`XMLHttpRequest` is [available for your use](https://developer.pebble.com/guides/communication/using-pebblekit-js/#using-xmlhttprequest), but consider using the [ajax] module instead which provides a jQuery-like ajax alternative to performing asynchronous and synchronous HTTP requests, with built in support for forms and headers.
+`XMLHttpRequest` is [available for your use](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest), but consider using the [ajax] module instead which provides a jQuery-like ajax alternative to performing asynchronous and synchronous HTTP requests, with built in support for forms and headers.
 
 ````js
 var ajax = require('ajax');
@@ -463,8 +453,6 @@ More specifically:
 
  - XHR and WebSocket are supported on iOS and Android
  - The `<canvas>` element is not available on iOS
-
-If in doubt, please contact [devsupport@getpebble.com](mailto:devsupport@getpebble.com).
 
 ## Clock
 [Clock]: #clock
@@ -2091,6 +2079,4 @@ Coming Soon!
 
 ## Acknowledgements
 
-Pebble.js started as [Simply.JS](http://simplyjs.io), a project by [Meiguro](http://github.com/meiguro). It is now part of the Pebble SDK and supported by Pebble. Contact [devsupport@getpebble.com](mailto:devsupport@getpebble.com) with any questions!
-
-This documentation uses [Flatdoc](http://ricostacruz.com/flatdoc/#flatdoc).
+Pebble.js started as [Simply.JS](http://github.com/meiguro/simplyjs), a project by [Meiguro](http://github.com/meiguro). It was added to the Pebble SDK by Pebble, and is now maintained by Rebble.
