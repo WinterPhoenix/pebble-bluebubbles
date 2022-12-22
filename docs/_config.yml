@@ -16,3 +16,13 @@ platforms:
   - name: GitHub
     icon: <i class="fa-brands fa-github"></i>
     link: https://github.com/pebble-dev
+
+navigation:
+  - name: Home
+    link: ./index.html
+  - name: Getting Started
+    sublist:
+      - name: Image
+        link: ./test.html
+  - name: Another Page
+    link: ./another-page.html
