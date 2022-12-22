@@ -8,11 +8,43 @@ description: Revamped documentation for Pebble.js.
 
 color-scheme: auto
 
-# logo: /assets/img/<logo_file>
+favicon: true
 
-# favicon: true
-
-platforms:
-  - name: GitHub
-    icon: <i class="fa-brands fa-github"></i>
-    link: https://github.com/pebble-dev
+navigation:
+  - name: Home
+    link: ./index.html
+  - name: The Basics
+    sublist:
+      - name: Getting Started
+        link: ./getting_started.html
+      - name: Images
+        link: ./images.html
+      - name: Fonts
+        link: ./fonts.html
+      - name: Using Colors
+        link: ./using_colors.html
+      - name: Feature Detection
+        link: ./feature_detection.html
+  - name: API References
+    sublist:
+      - name: Require
+        link: ./main/require.html
+      - name: Pebble
+        link: ./main/pebble.html
+      - name: Fonts
+        link: ./fonts.html
+      - name: Using Colors
+        link: ./using_colors.html
+      - name: Feature Detection
+        link: ./feature_detection.html
+      - name: Getting Started
+        link: ./getting_started.html
+      - name: Images
+        link: ./images.html
+      - name: Fonts
+        link: ./fonts.html
+      - name: Using Colors
+        link: ./using_colors.html
+      - name: Feature Detection
+        link: ./feature_detection.html
+        
