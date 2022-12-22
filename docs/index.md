@@ -11,6 +11,7 @@ Pebble.js is an alternative to Pebble C development that relies on a connected d
 - Note that Pebble.js was still in beta when Pebble folded, so anticipate some weirdness! Don't worry, it's just part of the fun. ;)
 
 ### Credits
+- [@Meiguro](https://github.com/meiguro)
 - [@BlockArchitech](https://github.com/blockarchitech)
 - [@JohnSpahr](https://github.com/johnspahr)
 - [@Willow-Systems](https://github.com/willow-systems)
