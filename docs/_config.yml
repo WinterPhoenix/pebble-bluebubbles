@@ -1,4 +1,4 @@
 plugins:
     - jekyll-remote-theme
     
-remote_theme: JohnSpahr/RebbleJekyll
+remote_theme: johnspahr/rebble
