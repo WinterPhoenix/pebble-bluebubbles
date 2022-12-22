@@ -9,3 +9,9 @@ Pebble.js is an alternative to Pebble C development that relies on a connected d
 - Pebble.js app bundles can be edited by renaming the file extension from .pbw to .zip, so it is very easy to reference existing projects. Also check GitHub!
 - For JS watchface development, consider checking out [RockyJS](https://developer.rebble.io/developer.pebble.com/guides/rocky-js/rocky-js-overview/index.html).
 - Note that Pebble.js was still in beta when Pebble folded, so anticipate some weirdness! Don't worry, it's just part of the fun. ;)
+
+### Credits
+- [@BlockArchitech](https://github.com/blockarchitech)
+- [@JohnSpahr](https://github.com/johnspahr)
+- [@Willow-Systems](https://github.com/willow-systems)
+- And the whole [@pebble-dev](https://github.com/pebble-dev) team for keeping the dream alive!
