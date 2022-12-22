@@ -25,7 +25,7 @@ It's time to begin your Pebble.js journey! We recommend starting with the basics
 5. [Feature Detection](feature_detection.md)
 
 ### API Reference
-#### Main Stuff
+#### Main
 - [Require](main/require.md)
 - [Pebble](main/pebble.md)
 - [Local Storage](main/local_storage.md)
