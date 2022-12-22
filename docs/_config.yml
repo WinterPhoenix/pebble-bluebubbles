@@ -13,9 +13,38 @@ favicon: true
 navigation:
   - name: Home
     link: ./index.html
-  - name: Getting Started
+  - name: The Basics
     sublist:
-      - name: Image
-        link: ./test.html
-  - name: Another Page
-    link: ./another-page.html
+      - name: Getting Started
+        link: ./getting_started.html
+      - name: Images
+        link: ./images.html
+      - name: Fonts
+        link: ./fonts.html
+      - name: Using Colors
+        link: ./using_colors.html
+      - name: Feature Detection
+        link: ./feature_detection.html
+  - name: API References
+    sublist:
+      - name: Require
+        link: ./main/require.html
+      - name: Pebble
+        link: ./main/pebble.html
+      - name: Fonts
+        link: ./fonts.html
+      - name: Using Colors
+        link: ./using_colors.html
+      - name: Feature Detection
+        link: ./feature_detection.html
+      - name: Getting Started
+        link: ./getting_started.html
+      - name: Images
+        link: ./images.html
+      - name: Fonts
+        link: ./fonts.html
+      - name: Using Colors
+        link: ./using_colors.html
+      - name: Feature Detection
+        link: ./feature_detection.html
+        
