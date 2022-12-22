@@ -138,4 +138,4 @@ menu.show();
 
 In the examples above, mostly black text on white or light gray is used which has the most contrast. Try to maintain this amount of contrast with text. Using dark gray on light gray for example can be unreadable at certain angles in the sunlight or in darkly lit areas.
 
-Well, that was a lot! [Feature detection](feature_detection.md) coming up next.
+<breadcrumb>
