@@ -1,5 +1,4 @@
 ## Using Images
-[Using Images]: #using-images
 
 You can use images in your Pebble.js application. Currently all images must be embedded in your applications. They will be resized and converted to black and white when you build your project.
 
@@ -7,6 +6,7 @@ We recommend that you follow these guidelines when preparing your images for Peb
 
  * Resize all images for the screen of Pebble. A fullscreen image will be 144 pixels wide by 168 pixels high.
  * Use an image editor or [HyperDither](http://2002-2010.tinrocket.com/software/hyperdither/index.html) to dither your image in black and white.
+ * You can find the Pebble color palette files [here](https://developer.rebble.io/developer.pebble.com/guides/app-resources/images/index.html#color-palettes).
  * Remember that the maximum size for a Pebble application is 100kB. You will quickly reach that limit if you add too many images.
 
 To add an image in your application, edit the `appinfo.json` file and add your image:
@@ -44,21 +44,4 @@ wind.add(image);
 wind.show();
 ````
 
-## Using Fonts
-[Using Fonts]: #using-fonts
-
-You can use any of the Pebble system fonts in your Pebble.js applications. Please refer to [this guide to](https://developer.rebble.io/developer.pebble.com/guides/app-resources/system-fonts/index.html) for a list of all the Pebble system fonts. When referring to a font, using lowercase with dashes is recommended. For example, `GOTHIC_18_BOLD` becomes `gothic-18-bold`.
-
-````js
-var Vector2 = require('vector2');
-
-var wind = new UI.Window();
-var textfield = new UI.Text({
- position: new Vector2(0, 0),
- size: new Vector2(144, 168),
- font: 'gothic-18-bold',
- text: 'Gothic 18 Bold'
-});
-wind.add(textfield);
-wind.show();
-````
+Bravo! On to [custom fonts](fonts.md).

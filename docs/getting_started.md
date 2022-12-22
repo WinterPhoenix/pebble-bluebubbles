@@ -19,7 +19,7 @@ To get started, you just need to call `require('ui')` to load the UI module and 
 var UI = require('ui');
 ````
 
-The basic block to build user interface is the [Card](card.md). A Card is a type of [Window](window.md) that occupies the entire screen and allows you to display some text in a pre-structured way: a title at the top, a subtitle below it and a body area for larger paragraphs. Cards can be made scrollable to display large quantities of information. You can also add images next to the title, subtitle or in the body area.
+The basic block to build user interface is the [Card](ui/card.md). A Card is a type of [Window](ui/window.md) that occupies the entire screen and allows you to display some text in a pre-structured way: a title at the top, a subtitle below it and a body area for larger paragraphs. Cards can be made scrollable to display large quantities of information. You can also add images next to the title, subtitle or in the body area.
 
 ````js
 var card = new UI.Card({
