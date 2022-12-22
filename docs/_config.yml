@@ -21,8 +21,8 @@ navigation:
         link: ./images.html
       - name: Fonts
         link: ./fonts.html
-      - name: Using Colors
-        link: ./using_colors.html
+      - name: Using Color
+        link: ./using_color.html
       - name: Feature Detection
         link: ./feature_detection.html
   - name: API References
@@ -80,7 +80,7 @@ navigation:
       - name: Radial
         link: ./radial.html
       - name: Rectangle
-        link: ./rectangle.html        
+        link: ./rect.html        
   - name: Miscellaneous
     sublist:
       - name: Timeline
