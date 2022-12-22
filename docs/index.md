@@ -1,12 +1,11 @@
 ---
-layout: home
+layout: article
 title: "Pebble.js"
 date:   2022-12-22 11:21:42
 
 permalink: /
 
-# articles:
-#   excerpt_type: html
+key: page-sidebar
 ---
 # Updated Documentation for Pebble.js
 
