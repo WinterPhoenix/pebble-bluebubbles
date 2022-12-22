@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ### Radial
 [Radial]: #radial
 

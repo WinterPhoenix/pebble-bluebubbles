@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ### Line
 [Line]: #line
 

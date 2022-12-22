@@ -1,9 +1,5 @@
 ---
-layout: article
-title: "Pebble.js"
-date:   2022-12-22 11:21:42
-
-permalink: /
+layout: default
 ---
 # Updated Documentation for Pebble.js
 
@@ -29,7 +25,7 @@ It's time to begin your Pebble.js journey! We recommend starting with the basics
 - [Require](main/require.md)
 - [Pebble](main/pebble.md)
 - [Local Storage](main/local_storage.md)
-- [XMLHttpRequest](main/xmlhttprequest.md)
+- [HTTP Request](main/http.md)
 - [Window (Browser)](main/window_browser.md)
 - [Clock](main/clock.md)
 - [Platform](main/platform.md)
@@ -61,7 +57,6 @@ It's time to begin your Pebble.js journey! We recommend starting with the basics
 - [Wakeup](misc/wakeup.md)
 
 ### Libraries
-- [Ajax](lib/ajax.md)
 - [Vector2](lib/vector2.md)
 
 <footer>created and maintained by rebble.io</footer>

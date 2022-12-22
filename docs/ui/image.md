@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ### Image
 [Image]: #image
 

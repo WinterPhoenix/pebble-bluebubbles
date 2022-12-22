@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ## Platform
 [Platform]: #platform
 

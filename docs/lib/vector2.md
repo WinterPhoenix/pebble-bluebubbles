@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ### Vector2
 [Vector2]: #vector2
 

@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ### Menu
 [Menu]: #menu
 

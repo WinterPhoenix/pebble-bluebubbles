@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ### Rect
 [Rect]: #rect
 

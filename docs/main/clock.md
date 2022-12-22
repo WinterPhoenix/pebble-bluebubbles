@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ## Clock
 
 The Clock module makes working with the [Wakeup] module simpler with its provided time utility functions.

@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ### Vibe
 [Vibe]: #vibe
 

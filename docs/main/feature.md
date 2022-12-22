@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ### Feature
 [Feature]: #feature
 

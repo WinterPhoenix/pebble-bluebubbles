@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ## Using Color
 You can use color in your Pebble.js applications by specifying them in the supported [Color Formats]. Use the [Pebble Color Picker](https://developer.rebble.io/developer.pebble.com/guides/tools-and-resources/color-picker/index.html) to find colors to use. Be sure to maintain [Readability and Contrast] when developing your application.
 

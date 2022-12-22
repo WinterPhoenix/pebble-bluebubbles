@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ## Wakeup
 [Wakeup]: #wakeup
 

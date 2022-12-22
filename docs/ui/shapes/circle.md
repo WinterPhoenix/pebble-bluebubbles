@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ### Circle
 [Circle]: #circle
 

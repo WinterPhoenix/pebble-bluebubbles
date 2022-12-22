@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ## Settings
 [Settings]: #settings
 

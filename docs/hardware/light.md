@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ### Light
 [Light]: #light
 
@@ -6,7 +9,7 @@
 var Light = require('ui/light');
 
 // Turn on the light
-Light.on('long');
+Light.on();
 ````
 
 #### Light.on()

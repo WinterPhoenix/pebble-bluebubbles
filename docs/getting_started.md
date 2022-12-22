@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ## Getting Started
 
 So it begins! Just remember, Pebble.js applications follow the best and most modern JavaScript practices circa 2014. Some things might be a bit dated for that reason. Regardless, here's how to get up and running:

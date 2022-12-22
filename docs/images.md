@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ## Using Images
 
 You can use images in your Pebble.js application. Currently all images must be embedded in your applications. They will be resized and converted to black and white when you build your project.

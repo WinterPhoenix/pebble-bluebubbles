@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ### Voice
 [Voice]: #voice
 

@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ### Pebble
 
 The `Pebble` object from [PebbleKit JavaScript](https://developer.rebble.io/developer.pebble.com/docs/pebblekit-js/index.html) is available as a global variable. Some of the methods it provides have Pebble.js equivalents. When available, it is recommended to use the Pebble.js equivalents as they have more documented features and cleaner interfaces.

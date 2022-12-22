@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ### TimeText
 [TimeText]: #timetext
 

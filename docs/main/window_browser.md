@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ### window -- browser
 
 A `window` object is provided with a subset of the standard APIs you would find in a normal browser. Its direct usage is discouraged because available functionalities may differ between the iOS and Android runtime environment. 

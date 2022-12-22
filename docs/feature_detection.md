@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ## Feature Detection
 
 Pebble.js provides the [Feature] module so that you may perform feature detection. This allows you to change the presentation or behavior of your application based on the capabilities or characteristics of the current Pebble watch that the user is running your application with.
