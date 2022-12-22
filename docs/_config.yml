@@ -16,7 +16,7 @@ permalink   : date
 
 ## => GitHub Repository (if the site is hosted by GitHub)
 ##############################
-repository: johnspahr/pebblejs
+repository: pebble-dev/pebblejs
 repository_tree: master
 
 defaults:
