@@ -16,4 +16,4 @@ wind.add(textfield);
 wind.show();
 ````
 
-Short and sweet! Now for [using color](using_color.md).
+<breadcrumb>

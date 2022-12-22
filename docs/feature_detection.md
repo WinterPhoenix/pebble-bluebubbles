@@ -93,4 +93,4 @@ Now, if it is necessary to separate the different logic in setting up the card, 
 
 The two examples consist of units of logic that consist of one liners, but if each line was instead large blocks of logic with the `isAplite` boolean used throughout, the entanglement issue would be more difficult to remove from your codebase, hence the recommendation to use [Feature] detection. Of course, for capabilities or characteristics that [Feature] is unable to allow you to discern, use [Platform].
 
-Congrats! You have learned the basics of Pebble JS!
+<breadcrumb>

@@ -1,7 +1,7 @@
 ### ajax
 [ajax]: #ajax
 
-This module gives you a very simple and easy way to make HTTP requests.
+This module gives you a very simple and easy way to make HTTP requests. This is recommended over XMLHttpRequest.
 
 ````js
 var ajax = require('ajax');
@@ -30,3 +30,7 @@ The supported options are:
 The `success` callback will be called if the HTTP request is successful (when the status code is inside [200, 300) or 304). The parameters are the data received from the server, the status code, and the request object. If the option `type: 'json'` was set, the response will automatically be converted to an object, otherwise `data` is a string.
 
 The `failure` callback is called when an error occurred. The parameters are the same as `success`.
+
+### XMLHttpRequest
+
+`XMLHttpRequest` is [available for your use](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest), but consider using the [ajax] module instead which provides a jQuery-like ajax alternative to performing asynchronous and synchronous HTTP requests, with built in support for forms and headers.

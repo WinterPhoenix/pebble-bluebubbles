@@ -44,22 +44,11 @@ if (Feature.blackAndWhite()) {
 #### Feature.rectangle([yes, no])
 [Feature.rectangle()]: #feature-rectangle
 
-`Feature.rectangle` will return the `yes` parameter if the watch screen is rectangular and `no` if it is not. This is the opposite of [Feature.round()]. When given no parameters, it will return true or false respectively.
-
-````js
-var margin = Feature.rectangle(10, 20);
-
-if (Feature.rectangle()) {
-  // Perform rectangular display only operation
-  console.log('Rectangular display');
-}
-````
-
 <a id="feature-round"></a>
 #### Feature.round([yes, no])
 [Feature.round()]: #feature-round
 
-`Feature.round` will return the `yes` parameter if the watch screen is round and `no` if it is not. This is the opposite of [Feature.rectangle()]. When given no parameters, it will return true or false respectively.
+`Feature.round` will return the `yes` parameter if the watch screen is round and `no` if it is not. This is the opposite of [Feature.rectangle()], which functions in the same way. When given no parameters, it will return true or false respectively.
 
 ````js
 var textAlign = Feature.round('center', 'left');
