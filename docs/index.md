@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: home
 title: "Pebble.js"
 date:   2022-12-22 11:21:42
 
