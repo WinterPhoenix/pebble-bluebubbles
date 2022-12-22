@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Pebble.js"
+date:   2022-12-22 11:21:42
+
+permalink: /
+---
 # Updated Documentation for Pebble.js
 
 Want to make a Pebble app? If so, you've come to the right place! These pages document how to program your Pebble smartwatch with JavaScript. Here are some things to note:
