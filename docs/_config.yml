@@ -8,14 +8,7 @@ description: Revamped documentation for Pebble.js.
 
 color-scheme: auto
 
-# logo: /assets/img/<logo_file>
-
-# favicon: true
-
-platforms:
-  - name: GitHub
-    icon: <i class="fa-brands fa-github"></i>
-    link: https://github.com/pebble-dev
+favicon: true
 
 navigation:
   - name: Home
