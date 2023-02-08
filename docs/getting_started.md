@@ -3,6 +3,10 @@ layout: default
 ---
 ## Getting Started
 
+> Note: Pebble.js is still in beta, and breaks *all the time.*
+> If you have the option, use the native C API instead. There's loads of awesome resources in the Rebble discord server, just to get you started.
+> If you're a first-time app dev, or creating an app for a hackathon, this can be a great way to get started with pebble development.
+
 So it begins! Just remember, Pebble.js applications follow the best and most modern JavaScript practices circa 2014. Some things might be a bit dated for that reason. Regardless, here's how to get up and running:
  * With the Pebble SDK
 
