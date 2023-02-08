@@ -13,9 +13,9 @@ favicon: true
 navigation:
   - name: Home
     link: ./index.html
-  - name: The Basics
+  - name: Tutorials
     sublist:
-      - name: Getting Started
+      - name: Getting Started with Pebble.js
         link: ./getting_started.html
       - name: Images
         link: ./images.html
@@ -25,7 +25,7 @@ navigation:
         link: ./using_color.html
       - name: Feature Detection
         link: ./feature_detection.html
-  - name: API References
+  - name: References
     sublist:
       - name: Require
         link: ./require.html
