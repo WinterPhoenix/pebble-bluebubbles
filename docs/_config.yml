@@ -1,7 +1,7 @@
 plugins:
     - jekyll-remote-theme
     
-remote_theme: vaibhavvikas/jekyll-theme-minimalistic
+remote_theme: just-the-docs/just-the-docs
 
 title: Pebble.js Docs
 description: Revamped documentation for Pebble.js. Maintained by rebble.io.
