@@ -6,6 +6,8 @@
 
 #include <pebble.h>
 
+#include "../util/memory.h"
+
 typedef Packet AccelPeekPacket;
 
 typedef struct AccelConfigPacket AccelConfigPacket;
@@ -49,7 +51,7 @@ static bool send_accel_tap(AccelAxisType axis, int32_t direction) {
 static bool send_accel_data(SimplyMsg *self, AccelData *data, uint32_t num_samples, bool is_peek) {
   size_t data_length = sizeof(AccelData) * num_samples;
   size_t length = sizeof(AccelDataPacket) + data_length;
-  AccelDataPacket *packet = malloc(length);
+  AccelDataPacket *packet = safer_malloc(length);
   if (!packet) {
     return false;
   }
@@ -125,7 +127,7 @@ SimplyAccel *simply_accel_create(Simply *simply) {
     return s_accel;
   }
 
-  SimplyAccel *self = malloc(sizeof(*self));
+  SimplyAccel *self = safer_malloc(sizeof(*self));
   *self = (SimplyAccel) {
     .simply = simply,
     .rate = ACCEL_SAMPLING_100HZ,

@@ -223,7 +223,7 @@ void simply_res_clear(SimplyRes *self) {
 }
 
 SimplyRes *simply_res_create() {
-  SimplyRes *self = malloc(sizeof(*self));
+  SimplyRes *self = safer_malloc(sizeof(*self));
   *self = (SimplyRes) { .images = NULL };
 
   while (resource_get_handle(self->num_bundled_res + 1)) {
