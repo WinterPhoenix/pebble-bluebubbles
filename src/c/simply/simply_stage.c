@@ -743,7 +743,7 @@ bool simply_stage_handle_packet(Simply *simply, Packet *packet) {
 }
 
 SimplyStage *simply_stage_create(Simply *simply) {
-  SimplyStage *self = malloc(sizeof(*self));
+  SimplyStage *self = safer_malloc(sizeof(*self));
   *self = (SimplyStage) { .window.simply = simply };
 
   static const WindowHandlers s_window_handlers = {

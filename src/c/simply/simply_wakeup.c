@@ -5,6 +5,7 @@
 #include "simply.h"
 
 #include "../util/compat.h"
+#include "../util/memory.h"
 
 #include <pebble.h>
 
@@ -97,7 +98,7 @@ static void handle_wakeup_set(Simply *simply, Packet *data) {
   WakeupSetPacket *packet = (WakeupSetPacket*) data;
   WakeupId id = wakeup_schedule(packet->timestamp, packet->cookie, packet->notify_if_missed);
 
-  WakeupSetContext *context = malloc(sizeof(*context));
+  WakeupSetContext *context = safer_malloc(sizeof(*context));
   if (!context) {
     return;
   }

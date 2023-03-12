@@ -3,6 +3,7 @@
 #include "simply.h"
 
 #include "../util/graphics.h"
+#include "../util/memory.h"
 
 #include <pebble.h>
 
@@ -38,7 +39,7 @@ static void window_disappear(Window *window) {
 }
 
 SimplySplash *simply_splash_create(Simply *simply) {
-  SimplySplash *self = malloc(sizeof(*self));
+  SimplySplash *self = safer_malloc(sizeof(*self));
   *self = (SimplySplash) { .simply = simply };
 
   self->window = window_create();

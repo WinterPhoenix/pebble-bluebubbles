@@ -9,6 +9,7 @@
 #include "../util/none.h"
 #include "../util/platform.h"
 #include "../util/sdk.h"
+#include "../util/memory.h"
 
 #include <pebble.h>
 
@@ -198,7 +199,7 @@ bool simply_window_stack_handle_packet(Simply *simply, Packet *packet) {
 }
 
 SimplyWindowStack *simply_window_stack_create(Simply *simply) {
-  SimplyWindowStack *self = malloc(sizeof(*self));
+  SimplyWindowStack *self = safer_malloc(sizeof(*self));
   *self = (SimplyWindowStack) { .simply = simply };
 
   IF_SDK_2_ELSE({

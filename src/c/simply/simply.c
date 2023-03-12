@@ -11,10 +11,12 @@
 #include "simply_wakeup.h"
 #include "simply_voice.h"
 
+#include "../util/memory.h"
+
 #include <pebble.h>
 
 Simply *simply_create(void) {
-  Simply *simply = malloc(sizeof(*simply));
+  Simply *simply = safer_malloc(sizeof(*simply));
   simply->accel = simply_accel_create(simply);
   simply->voice = simply_voice_create(simply);
   simply->res = simply_res_create(simply);

@@ -14,6 +14,7 @@
 #include "../util/noop.h"
 #include "../util/string.h"
 #include "../util/window.h"
+#include "../util/memory.h"
 
 #include <pebble.h>
 
@@ -467,7 +468,7 @@ bool simply_ui_handle_packet(Simply *simply, Packet *packet) {
 
 SimplyUi *simply_ui_create(Simply *simply) {
   initialize_styles();
-  SimplyUi *self = malloc(sizeof(*self));
+  SimplyUi *self = safer_malloc(sizeof(*self));
   *self = (SimplyUi) { .window.layer = NULL };
 
   static const WindowHandlers s_window_handlers = {

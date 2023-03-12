@@ -103,7 +103,7 @@ static void destroy_packet(SimplyMsg *self, SimplyPacket *packet) {
 
 static void add_receive_packet(SimplyMsg *self, SegmentPacket *packet) {
   size_t size = packet->packet.length;
-  Packet *copy = malloc(size);
+  Packet *copy = safer_malloc(size);
   memcpy(copy, packet, size);
   SimplyPacket *node = malloc0(sizeof(*node));
   node->length = size;
@@ -117,7 +117,7 @@ static void handle_receive_queue(SimplyMsg *self, SegmentPacket *packet) {
     total_length += ((SimplyPacket*) walk)->length - sizeof(SegmentPacket);
   }
 
-  void *buffer = malloc(total_length);
+  void *buffer = safer_malloc(total_length);
   void *cursor = buffer + total_length;
   SegmentPacket *other = packet;
   SimplyPacket *walk = NULL;
@@ -259,8 +259,8 @@ void simply_msg_show_disconnected(SimplyMsg *self) {
   SimplyUi *ui = simply->ui;
 
   simply_ui_clear(ui, ~0);
-  simply_ui_set_text(ui, UiSubtitle, "Disconnected");
-  simply_ui_set_text(ui, UiBody, "Run the Pebble Phone App");
+  simply_ui_set_text(ui, UiSubtitle, "Not Connected");
+  simply_ui_set_text(ui, UiBody, "Please connect your Phone to Pebble.");
 
   if (window_stack_get_top_window() != ui->window.window) {
     bool was_broadcast = simply_window_stack_set_broadcast(false);
@@ -274,7 +274,7 @@ SimplyMsg *simply_msg_create(Simply *simply) {
     return s_msg;
   }
 
-  SimplyMsg *self = malloc(sizeof(*self));
+  SimplyMsg *self = safer_malloc(sizeof(*self));
   *self = (SimplyMsg) { .simply = simply };
   s_msg = self;
 
@@ -332,7 +332,7 @@ static void make_multi_packet(SimplyMsg *self, SimplyPacket *packet) {
     }
     walk = next;
   }
-  uint8_t *buffer = malloc(length);
+  uint8_t *buffer = safer_malloc(length);
   if (!buffer) {
     return;
   }
@@ -369,7 +369,7 @@ static void send_msg_retry(void *data) {
 }
 
 static SimplyPacket *add_packet(SimplyMsg *self, Packet *buffer) {
-  SimplyPacket *packet = malloc(sizeof(*packet));
+  SimplyPacket *packet = safer_malloc(sizeof(*packet));
   if (!packet) {
     free(buffer);
     return NULL;
@@ -389,7 +389,7 @@ static SimplyPacket *add_packet(SimplyMsg *self, Packet *buffer) {
 }
 
 bool simply_msg_send_packet(Packet *packet) {
-  Packet *copy = malloc(packet->length);
+  Packet *copy = safer_malloc(packet->length);
   if (!copy) {
     return false;
   }

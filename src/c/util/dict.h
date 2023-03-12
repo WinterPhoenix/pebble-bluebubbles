@@ -1,10 +1,13 @@
 #pragma once
 
+#include "../util/memory.h"
+
 #include <pebble.h>
+
 
 static inline void *dict_copy_to_buffer(DictionaryIterator *iter, size_t *length_out) {
   size_t length = dict_size(iter);
-  void *buffer = malloc(length);
+  void *buffer = safer_malloc(length);
   if (!buffer) {
     return NULL;
   }

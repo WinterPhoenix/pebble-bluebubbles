@@ -4,6 +4,8 @@
 
 #include "simply.h"
 
+#include "../util/memory.h"
+
 #include <pebble.h>
 
 #if !defined(PBL_PLATFORM_APLITE)
@@ -103,7 +105,7 @@ SimplyVoice *simply_voice_create(Simply *simply) {
     return s_voice;
   }
 
-  SimplyVoice *self = malloc(sizeof(*self));
+  SimplyVoice *self = safer_malloc(sizeof(*self));
   *self = (SimplyVoice) {
     .simply = simply,
     .in_progress = false,
