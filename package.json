@@ -1,11 +1,15 @@
 {
-  "name": "pebblejs",
-  "author": "Meiguro",
-  "version": "1.0.0",
-  "repository": "pebble/pebblejs",
+  "name": "pebblejs-temp",
+  "author": "BlockArchitech",
+  "version": "1.0.1",
+  "repository": "pebble-dev/pebblejs",
   "license": "MIT",
-  "files": ["dist.zip"],
-  "keywords": ["pebble-package"],
+  "files": [
+    "dist.zip"
+  ],
+  "keywords": [
+    "pebble-package"
+  ],
   "devDependencies": {
     "coffee-script": "^1.11.1"
   },
@@ -22,8 +26,7 @@
       "diorite"
     ],
     "resources": {
-      "media": [
-      ]
+      "media": []
     }
   }
 }

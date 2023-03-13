@@ -9,12 +9,12 @@
 void *safer_malloc(size_t bytes)
 {
     if (bytes == 0) {
-        fprintf(stderr, "FATAL: Cannot allocate 0 bytes!\n");
+        APP_LOG(APP_LOG_LEVEL_ERROR,"FATAL: Cannot allocate no bytes!\n");
         abort();
     }
     void *ptr = malloc(bytes);
     if (ptr == NULL) {
-        fprintf(stderr, "FATAL: Failed to allocate %zu bytes!\n", bytes);
+        APP_LOG(APP_LOG_LEVEL_ERROR,"FATAL: Failed to allocate some bytes!\n");
         abort();
     }
     return ptr;
