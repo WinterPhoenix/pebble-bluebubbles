@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Settings | BlueBubbles for Pebble</title>
+
+		<link href="settings.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<center>
+				<h1 class="mb-0">BlueBubbles for Pebble <span>(Unofficial)</span></h1>
+			</center>
+		</header>
+		<main>
+			<form id="form" onsubmit="return false;">
+				<div>
+					<label for="url">Server URL (beginning with https://)</label>
+					<input type="text" id="url" name="url" pattern="^https:\/\/[\w.-]+(:\d+)?" oninput="this.className = '';" required />
+				</div>
+
+				<div>
+					<label for="password">Server Password</label>
+					<input type="password" id="password" name="password" placeholder="unchanged" />
+				</div>
+
+				<div>
+					<label for="callingCode">Country calling code (beginning with +)</label>
+					<input type="text" id="callingCode" name="callingCode" pattern="^\+\d+$" oninput="this.className = '';" required />
+				</div>
+
+				<div>
+					<button id="save" onclick="submitSettings();">Save</button>
+				</div>
+			</form>
+		</main>
+		<footer>
+			<p>Made with ❤️ by WinterPhoenix</p>
+		</footer>
+
+		<script src="settings.js" type="text/javascript"></script>
+	</body>
+</html>
