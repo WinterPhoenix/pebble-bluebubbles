@@ -30,7 +30,7 @@ p {
 }
 
 header {
-	background-color: #0055AA;
+	background-color: #147EFB;
 	color: #FFF;
 	padding: .5rem 0;
 }
@@ -59,7 +59,7 @@ button {
 	padding: .5rem;
 	width: 50%;
 	margin: 0 auto;
-	background-color: #0055AA;
+	background-color: #147EFB;
 	color: #FFF;
 	border: 0;
 	font-size: 1.25rem;
@@ -68,11 +68,11 @@ button {
 }
 
 button:hover {
-	background-color: #00478f;
+	background-color: #0367D8;
 }
 
 button:active {
-	background-color: #003b75;
+	background-color: #034fA6;
 }
 
 footer {
