@@ -1,5 +1,8 @@
 var version = "1.0";
 
+// Demo Mode, pretty much just used for taking screenshots
+var demoMode = false;
+
 var ajax = require("ajax");
 var Feature = require("platform/feature");
 var Platform = require("platform");
@@ -292,6 +295,11 @@ var chatItems = [];
 var loadedChatItemsCount = 0;
 var allChatsLoaded = false;
 function loadChats(callback, offset) {
+	if (demoMode) {
+		callback(chatItems);
+		return;
+	}
+
 	fetchChatsCard.show();
 
 	ajax(
@@ -406,7 +414,7 @@ function loadMainMenuChats(offset) {
 				sections: [{
 					items: menuItems
 				}],
-				highlightBackgroundColor: Feature.color("#0055AA", "#000000"),
+				highlightBackgroundColor: Feature.color("#147EFB", "#000000"),
 				highlightTextColor: "white"
 			});
 		}
@@ -462,7 +470,7 @@ function initApp() {
 					}
 
 					console.log("Got Server Info:\n" + serverInfoStr);
-					aboutCard.body("Version: " + version + "\n\nAuthor:\nWinterPhoenix <contact@winteris.moe>\n\nServer URL:\n" + serverURL + "\n\nServer Info:\n" + serverInfoStr);
+					aboutCard.body("Version: " + version + "\n\nAuthor:\nWinterPhoenix <github.com/WinterPhoenix>\n\nServer URL:\n" + serverURL + "\n\nServer Info:\n" + serverInfoStr);
 
 					showMainMenu(0);
 				} else {
@@ -494,4 +502,30 @@ function initApp() {
 	}
 }
 
-initApp();
+function initAppDemo() {
+	aboutCard.body("Version: " + version + "\n\nAuthor:\nWinterPhoenix <github.com/WinterPhoenix>\n\nServer Info:\nDemo Mode");
+
+	contactsLoaded = true;
+	chatItems = [
+		{
+			title: "Alice, Bob",
+			subtitle: "When do you want to get drinks?"
+		},
+		{
+			title: "Bill Lumbergh",
+			subtitle: "Hello Peter. What's happening?"
+		},
+		{
+			title: "Misato Katsuragi",
+			subtitle: "Get in the Eva."
+		},
+	];
+
+	showMainMenu(0);
+}
+
+if (!demoMode) {
+	initApp();
+} else {
+	initAppDemo();
+}
