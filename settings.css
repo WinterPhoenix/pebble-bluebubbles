@@ -36,9 +36,9 @@ header {
 }
 
 main div {
-	padding: 1rem .5rem;
 	display: flex;
-	align-items: center;
+	flex-direction: column;
+	padding: 1rem .5rem;
 }
 
 main div:nth-of-type(2n+1) {
@@ -46,9 +46,7 @@ main div:nth-of-type(2n+1) {
 }
 
 input {
-	margin: 0 1rem;
-	flex-grow: 1;
-	padding: .5rem .25rem;
+	font-size: 1rem;
 	border: 2px solid #AAA;
 	border-radius: .25rem;
 }
