@@ -27,7 +27,7 @@ Settings.config({url: "https://winterphoenix.github.io/pebble-bluebubbles/"},
 
 			// TODO: If it's already loaded, tell the user to restart
 			initApp();
-		} else {
+		} else if (data.originalEvent.type != "webviewclosed") {
 			console.error("Settings update failed: " + JSON.stringify(data));
 
 			errorCard.subtitle("Error: Settings update failed");
