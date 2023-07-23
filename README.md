@@ -1,7 +1,7 @@
-# Pebble BlueBubbles client
+# BlueBubbles for Pebble (unofficial)
 
-Send iMessage messages using your Pebble smartwatch!
+Send iMessages using your Pebble smartwatch!
 
-BlueBubbles is independent of the smartphone you're using, so this works with both iOS and Android.
+BlueBubbles works independently of the smartphone you have, so this works with both iOS and Android.
 
 Inspired by [Pebble-Imessager](https://github.com/integraloftheday/Pebble-Imessager).
