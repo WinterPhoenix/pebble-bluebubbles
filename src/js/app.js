@@ -18,7 +18,7 @@ Settings.config({url: "https://winterphoenix.github.io/pebble-bluebubbles/"},
 			if (Settings.option("password") != "" && Settings.option("password") != null) {
 				console.log("New password. Updating secret store...")
 				Settings.data("password", Settings.option("password"))
-			} else {
+			} else if (Settings.data("password") != null) {
 				console.log("Password empty. Restoring value from secret store...")
 				Settings.option("password", Settings.data("password"))
 			}
@@ -440,11 +440,10 @@ function showMainMenu(offset) {
 }
 
 function initApp() {
-	errorCard.hide();
-
 	if (validateSettings() == true) {
 		console.log("Connecting to server: " + serverURL);
 		connectCard.show();
+		errorCard.hide();
 
 		ajax(
 			{
