@@ -18,12 +18,12 @@
 			<form id="form" onsubmit="return false;">
 				<div>
 					<label for="url">Server URL (beginning with https://)</label>
-					<input type="text" id="url" name="url" pattern="^https:\/\/[\w.-]+(:\d+)?" oninput="this.className = '';" required />
+					<input type="url" id="url" name="url" pattern="^https:\/\/[\w.-]+(:\d+)?" oninput="this.className = '';" required />
 				</div>
 
 				<div>
 					<label for="password">Server Password</label>
-					<input type="password" id="password" name="password" placeholder="unchanged" />
+					<input type="password" id="password" name="password" />
 				</div>
 
 				<div>

@@ -12,7 +12,7 @@ function submitSettings() {
 		return false;
 	}
 
-	var settings = [];
+	var settings = {};
 	settings.url = urlElem.value;
 	settings.password = passwordElem.value;
 	settings.callingCode = callingCodeElem.value;
@@ -30,7 +30,8 @@ function initFields() {
 		document.getElementById("url").value = settings.url;
 	}
 
-	// Password is secret, we shouldn't display it
+	// Password is secret, we shouldn't display it, but we should indicate if something exists
+	document.getElementById("password").placeholder = settings.password != null ? "unchanged" : "";
 
 	document.getElementById("callingCode").value = settings.callingCode != null ? settings.callingCode : "+1";
 }

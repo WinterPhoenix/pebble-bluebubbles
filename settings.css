@@ -45,13 +45,8 @@ main div:nth-of-type(2n+1) {
 	background-color: rgba(0, 0, 0, 0.05);
 }
 
-label {
-	font-size: 1.25rem;
-}
-
 input {
 	margin: 0 1rem;
-	font-size: 1.25rem;
 	flex-grow: 1;
 	padding: .5rem .25rem;
 	border: 2px solid #AAA;
