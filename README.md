@@ -1,4 +1,4 @@
-# BlueBubbles for Pebble (unofficial)
+# 💬 BlueBubbles for Pebble (unofficial)
 
 Send iMessages using your Pebble smartwatch!
 
@@ -27,4 +27,4 @@ There are 3 settings that need to be configured for the app to work:
 \* Please note that if you don't have contact(s) phone number/email addresses saved, we can't display their names for chats! You'll only see their phone number/email address.
 
 ##
-Inspired by [Pebble-Imessager](https://github.com/integraloftheday/Pebble-Imessager).
+Built with [Pebble.js](https://github.com/pebble-dev/pebblejs). Inspired by [Pebble-Imessager](https://github.com/integraloftheday/Pebble-Imessager).
