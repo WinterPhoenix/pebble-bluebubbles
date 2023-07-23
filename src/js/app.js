@@ -7,7 +7,7 @@ var Settings = require("settings");
 var UI = require("ui");
 var Voice = require("ui/voice");
 
-Settings.config({url: "https://winterphoenix.github.io/pebble-bluebubbles/settings.html"},
+Settings.config({url: "https://winterphoenix.github.io/pebble-bluebubbles/"},
 	function() {
 		console.log("Settings opened");
 	},
@@ -45,11 +45,20 @@ function validateSettings() {
 	serverPassword = Settings.option("password");
 	intlCallingCode = Settings.option("callingCode");
 
+	if (serverURL != null) {
+		serverURL = serverURL.trim();
+	}
+	if (serverPassword != null) {
+		serverPassword = serverPassword.trim();
+	}
+	if (intlCallingCode != null) {
+		intlCallingCode = intlCallingCode.trim();
+	}
+
 	// Make them null if they're empty
-	// TODO: String trim?
-	serverURL = serverURL = "" ? null : serverURL;
-	serverPassword = serverPassword = "" ? null : serverPassword;
-	intlCallingCode = intlCallingCode = "" ? null : intlCallingCode;
+	serverURL = serverURL == "" ? null : serverURL;
+	serverPassword = serverPassword == "" ? null : serverPassword;
+	intlCallingCode = intlCallingCode == "" ? null : intlCallingCode;
 
 	return serverURL != null && serverPassword != null && intlCallingCode != null;
 }
