@@ -1,6 +1,6 @@
 var version = "1.0";
 
-// Demo Mode, pretty much just used for taking screenshots
+// Demo Mode, pretty much just used for taking screenshots in emulator
 var demoMode = false;
 
 var ajax = require("ajax");
@@ -40,6 +40,11 @@ Settings.config({url: "https://winterphoenix.github.io/pebble-bluebubbles/"},
 	}
 );
 
+// Polyfill
+String.prototype.endsWith = function(suffix) {
+	return this.indexOf(suffix, this.length - suffix.length) !== -1;
+};
+
 var serverURL = null;
 var serverPassword = null;
 var intlCallingCode = null;
@@ -50,6 +55,7 @@ function validateSettings() {
 
 	if (serverURL != null) {
 		serverURL = serverURL.trim();
+		serverURL = serverURL.endsWith("/") ? serverURL.substring(0, serverURL.length - 1) : serverURL;
 	}
 	if (serverPassword != null) {
 		serverPassword = serverPassword.trim();
