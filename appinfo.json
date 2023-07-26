@@ -4,7 +4,7 @@
 		"configurable"
 	],
 	"companyName": "WinterPhoenix",
-	"longName": "BlueBubbles for Pebble",
+	"longName": "BlueBubbles",
 	"resources": {
 		"media": [
 			{
@@ -24,6 +24,21 @@
 				"type": "png"
 			},
 			{
+				"file": "images/action_icon_up.png",
+				"name": "IMAGE_ACTION_UP",
+				"type": "png"
+			},
+			{
+				"file": "images/action_icon_reply.png",
+				"name": "IMAGE_ACTION_REPLY",
+				"type": "png"
+			},
+			{
+				"file": "images/action_icon_down.png",
+				"name": "IMAGE_ACTION_DOWN",
+				"type": "png"
+			},
+			{
 				"file": "fonts/UbuntuMono-Regular.ttf",
 				"name": "MONO_FONT_14",
 				"type": "font"
@@ -40,8 +55,8 @@
 		"emery"
 	],
 	"uuid": "a6a9cf9c-6c15-4955-abe2-693e36681c53",
-	"versionCode": 1.0,
-	"versionLabel": "1.0",
+	"versionCode": 1.2,
+	"versionLabel": "1.2",
 	"watchapp": {
 		"watchface": false
 	}

@@ -1,4 +1,4 @@
-var version = "1.0";
+var version = "1.2";
 
 // Demo Mode, pretty much just used for taking screenshots in emulator
 var demoMode = false;
@@ -8,6 +8,7 @@ var Feature = require("platform/feature");
 var Platform = require("platform");
 var Settings = require("settings");
 var UI = require("ui");
+var Vector2 = require("vector2");
 var Voice = require("ui/voice");
 
 Settings.config({url: "https://winterphoenix.github.io/pebble-bluebubbles/"},
@@ -39,6 +40,81 @@ Settings.config({url: "https://winterphoenix.github.io/pebble-bluebubbles/"},
 		}
 	}
 );
+
+// https://stackoverflow.com/a/8809472
+function generateUUID() {
+	var d = new Date().getTime();
+	var d2 = ((typeof performance !== 'undefined') && performance.now && (performance.now()*1000)) || 0;
+	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+		var r = Math.random() * 16;
+		if (d > 0){
+			r = (d + r)%16 | 0;
+			d = Math.floor(d/16);
+		} else {
+			r = (d2 + r)%16 | 0;
+			d2 = Math.floor(d2/16);
+		}
+		return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+	});
+}
+
+var addressToContactMap = {};
+function getDisplayNameFromParticipants(participants) {
+	var displayName = ""
+
+	if (participants.length > 1) {
+		for (var participantNum = 0; participantNum < participants.length; participantNum++) {
+			var participantAddress = participants[participantNum].address;
+			var participantName = participantAddress in addressToContactMap ? addressToContactMap[participantAddress].firstName : participantAddress;
+
+			displayName += displayName == "" ? participantName : ", " + participantName;
+		}
+	} else {
+		var participantAddress = participants[0].address;
+		displayName = participantAddress in addressToContactMap ? addressToContactMap[participantAddress].displayName : participantAddress;
+	}
+
+	return displayName;
+}
+
+var monthMap = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var dayOfWeekMap = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+function getTimestampText(stampEpochTime) {
+	var curTime = new Date();
+
+	var todayMidnight = new Date();
+	todayMidnight.setHours(0, 0, 0, 0);
+
+	//var yesterdayMidnight = new Date();
+	//yesterdayMidnight.setDate(curTime.getDate() - 1);
+	//yesterdayMidnight.setHours(0, 0, 0, 0);
+
+	var oneWeekAgo = new Date();
+	oneWeekAgo.setDate(curTime.getDate() - 7);
+
+	var beginningOfYear = new Date();
+	beginningOfYear.setMonth(0, 1);
+	beginningOfYear.setHours(0, 0, 0, 0);
+
+	var stampDateTime = new Date(stampEpochTime);
+
+	var dateNiceName;
+	if (stampDateTime >= todayMidnight) {
+		dateNiceName = "Today";
+	} else if (stampDateTime >= oneWeekAgo) {
+		dateNiceName = dayOfWeekMap[stampDateTime.getDay()];
+	} else if (stampDateTime >= beginningOfYear) {
+		dateNiceName = monthMap[stampDateTime.getMonth()] + " " + stampDateTime.getDate() + " at";
+	} else {
+		dateNiceName = monthMap[stampDateTime.getMonth()] + " " + stampDateTime.getDate() + ", " + stampDateTime.getFullYear() + " at";
+	}
+
+	var dateTimeHours = stampDateTime.getHours();
+	var ampm = dateTimeHours >= 12 ? "PM" : "AM";
+	dateTimeHours = dateTimeHours > 12 ? dateTimeHours - 12 : dateTimeHours;
+
+	return dateNiceName + " " + (dateTimeHours == 0 ? 12 : dateTimeHours) + ":" + stampDateTime.getMinutes() + ampm;
+}
 
 // Polyfill
 String.prototype.endsWith = function(suffix) {
@@ -75,6 +151,15 @@ function validateSettings() {
 // Populated when we initially "connect"
 var serverInfo = {};
 
+// TODO: Pull Request for Stage obj
+UI.Window.prototype.clear = function() {
+	var self = this;
+	this.each(function(element) {
+		self.remove(element);
+		//delete element;
+	});
+}
+
 var aboutCard = new UI.Card({
 	title: "BlueBubbles",
 	body: "Loading about card...",
@@ -85,6 +170,11 @@ var aboutCard = new UI.Card({
 var connectCard = new UI.Card({
 	title: "BlueBubbles",
 	subtitle: "Connecting..."
+});
+
+var fetchMessagesCard = new UI.Card({
+	title: "BlueBubbles",
+	subtitle: "Fetching Messages..."
 });
 
 var fetchChatsCard = new UI.Card({
@@ -120,23 +210,6 @@ var errorCard = new UI.Card({
 	scrollable: true
 });
 
-// https://stackoverflow.com/a/8809472
-function generateUUID() {
-	var d = new Date().getTime();
-	var d2 = ((typeof performance !== 'undefined') && performance.now && (performance.now()*1000)) || 0;
-	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-		var r = Math.random() * 16;
-		if (d > 0){
-			r = (d + r)%16 | 0;
-			d = Math.floor(d/16);
-		} else {
-			r = (d2 + r)%16 | 0;
-			d2 = Math.floor(d2/16);
-		}
-		return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-	});
-}
-
 function startTypingIndicator(chatGUID) {
 	ajax(
 		{
@@ -155,6 +228,7 @@ function stopTypingIndicator(chatGUID) {
 	);
 }
 
+var mainMenuIsStale = false;
 function sendMsg(chatGUID, chatName, msg) {
 	console.log("Sending message to " + chatGUID + " (" + chatName + "): " + msg);
 
@@ -180,8 +254,12 @@ function sendMsg(chatGUID, chatName, msg) {
 			if (data.status == 200) {
 				console.log("Message sent");
 
+				// Reload the conversation, mark the main menu as stale
+				mainMenuIsStale = true;
+				destroyChatWindow();
 				msgSentCard.show();
 				setTimeout(function() {
+					showChatThread(chatGUID, chatName, 0);
 					msgSentCard.hide();
 				}, 1000);
 			} else {
@@ -216,6 +294,7 @@ function doReply(chatGUID, chatName) {
 			sendMsg(chatGUID, chatName, data.transcription);
 		} else {
 			stopTypingIndicator(chatGUID);
+			Voice.dictate("stop");
 
 			// If they just cancelled it, don't show an error
 			if (data.err != "systemAborted") {
@@ -229,8 +308,183 @@ function doReply(chatGUID, chatName) {
 	});
 }
 
+var loadedMessagesCount = 0;
+var allMessagesLoaded = false;
+function loadChatThread(chatGUID, offset, callback) {
+	if (offset == 0) {
+		fetchMessagesCard.show();
+	}
+
+	ajax(
+		{
+			url: serverURL + "/api/v1/chat/" + chatGUID + "/message?password=" + serverPassword + "&with=sms,handle&sort=DESC&limit=15&offset=" + offset,
+			method: "GET",
+			type: "json",
+			cache: false
+		},
+		function(data) {
+			if (data.status == 200) {
+				var messages = data.data;
+
+				// TODO: Is there a maximum number of items that can be displayed?
+				loadedMessagesCount += data.metadata.count;
+				allMessagesLoaded = loadedMessagesCount >= data.metadata.total;
+
+				console.log("Loaded " + data.metadata.count + " messages for " + chatGUID);
+
+				callback(messages);
+			} else {
+				console.error("Couldn't load messages: " + JSON.stringify(data));
+
+				errorCard.subtitle("Error: Couldn't load messages");
+				errorCard.body(data.error.type + ": " + data.error.message);
+				errorCard.show();
+			}
+
+			fetchMessagesCard.hide();
+		},
+		function(data) {
+			console.error("Couldn't load messages: " + JSON.stringify(data));
+
+			errorCard.subtitle("Error: Couldn't load messages");
+			errorCard.body(data.error.type + ": " + data.error.message);
+			errorCard.show();
+
+			fetchMessagesCard.hide();
+		}
+	);
+}
+
+var chatWindow;
+var chatWindowConfig = {
+	status: {
+		color: "black",
+		backgroundColor: "white"
+	},
+	backgroundColor: "white",
+	scrollable: true,
+	action: {
+		// TODO: This should be an Action Menu instead (ex. the circle on notifications, more real estate)
+		up: "images/action_icon_up.png",
+		select: "images/action_icon_reply.png",
+		down: "images/action_icon_down.png"
+	}
+};
+
+var renderedMessagesCount = 0;
+function destroyChatWindow() {
+	chatWindow.hide();
+	chatWindow.clear();
+	loadedMessagesCount = 0;
+	allMessagesLoaded = false;
+	renderedMessagesCount = 0;
+}
+
+function showChatThread(chatGUID, chatName, offset) {
+	loadChatThread(chatGUID, offset, function(messages) {
+		// TODO: There doesn't seem to be a way to destroy elements (at least implemented on the JS side)?
+		//if (!chatWindow) {
+		chatWindow = new UI.Window(chatWindowConfig);
+		chatWindow.on("click", "back", destroyChatWindow);
+		chatWindow.on("click", "select", function() {
+			doReply(chatGUID, chatName);
+		});
+
+		// TODO: Ideally we'd display things in chronological order (like in iMessage), but there doesn't seem to be a way to force the window to scroll (in this case to the bottom) from Pebble.js
+		// TODO: Is there a way to figure out if the window is at the bottom of the scroll well? We could load messages when they're needed that way (and is why offset isn't used)...
+		var chatWindowSize = chatWindow.size();
+		var msgHeight = chatWindowSize.y * 0.75;
+
+		// Run in reverse since we need to have the most recent messages at the top
+		for (var i = 0; i < messages.length; i++) {
+			var msg = messages[i];
+			var displayName = msg.isFromMe ? "You" : msg.groupName != null ? msg.groupName : "";
+			var text = msg.text != null ? msg.text : "";
+
+			if (text == "") {
+				if (msg.isAudioMessage) {
+					text = "<Audio Message>"
+				} else if (msg.attachments[0]) {
+					text = "<" + msg.attachments.length + " Attachment(s)>"
+				}
+			}
+
+			if (text != "") {
+				if (displayName == "") {
+					displayName = getDisplayNameFromParticipants([msg.handle]);
+				}
+
+				// There's a gap here to create the appearance of a separator
+				var msgBackground = new UI.Rect({
+					position: new Vector2(0, renderedMessagesCount * msgHeight + (renderedMessagesCount > 0 ? 2 : 0)),
+					size: new Vector2(chatWindowSize.x, msgHeight - (renderedMessagesCount > 0 ? 4 : 2)),
+					backgroundColor: msg.isFromMe ? Feature.color(chatGUID.lastIndexOf("iMessage") > -1 ? "#1982FC" : "#43CC47", "#000000") : "white"
+				});
+				chatWindow.add(msgBackground);
+
+				var displayNameText = new UI.Text({
+					position: new Vector2(2, renderedMessagesCount * msgHeight),
+					size: new Vector2(chatWindowSize.x - 2, 18),
+					font: "gothic-18-bold",
+					text: displayName,
+					textOverflow: "ellipsis",
+					textAlign: "left",
+					color: "black"
+				});
+				chatWindow.add(displayNameText);
+
+				var msgText = new UI.Text({
+					position: new Vector2(2, renderedMessagesCount * msgHeight + 20),
+					size: new Vector2(chatWindowSize.x - 2, msgHeight - 42),
+					font: "gothic-18-bold",
+					text: text,
+					textOverflow: "ellipsis",
+					textAlign: "left",
+					color: "black"
+				});
+				chatWindow.add(msgText);
+
+				var timestampText = new UI.Text({
+					position: new Vector2(2, renderedMessagesCount * msgHeight + msgHeight - 24),
+					size: new Vector2(chatWindowSize.x - 2, 18),
+					font: "gothic-18",
+					text: getTimestampText(msg.dateCreated),
+					textOverflow: "fill",
+					textAlign: "left",
+					color: "black"
+				});
+				chatWindow.add(timestampText);
+
+				renderedMessagesCount++;
+			}
+		}
+
+		if (!allMessagesLoaded) {
+			var loadMoreBackground = new UI.Rect({
+				position: new Vector2(0, renderedMessagesCount * msgHeight + 2),
+				size: new Vector2(chatWindowSize.x, 18),
+				backgroundColor: "white"
+			});
+			chatWindow.add(loadMoreBackground);
+
+			var loadMoreText = new UI.Text({
+				position: new Vector2(2, renderedMessagesCount * msgHeight - 22),
+				size: new Vector2(chatWindowSize.x - 2, 36),
+				font: "leco-36-bold-numbers",
+				text: "...",
+				textAlign: "center",
+				textOverflow: "ellipsis",
+				color: "black"
+			});
+			chatWindow.add(loadMoreText);
+		}
+
+		chatWindow.backgroundColor("black"); // "separator"
+		chatWindow.show();
+	}, offset);
+}
+
 var contactsLoaded = false;
-var addressToContactMap = {};
 function loadContacts(callback) {
 	fetchContactsCard.show();
 
@@ -338,17 +592,7 @@ function loadChats(callback, offset) {
 	
 					if (lastMessage != "") {
 						if (displayName == "") {
-							if (chat.participants.length > 1) {
-								for (var participantNum = 0; participantNum < chat.participants.length; participantNum++) {
-									var participantAddress = chat.participants[participantNum].address;
-									var participantName = participantAddress in addressToContactMap ? addressToContactMap[participantAddress].firstName : participantAddress;
-	
-									displayName += displayName == "" ? participantName : ", " + participantName;
-								}
-							} else {
-								var participantAddress = chat.participants[0].address;
-								displayName = participantAddress in addressToContactMap ? addressToContactMap[participantAddress].displayName : participantAddress;
-							}
+							displayName = getDisplayNameFromParticipants(chat.participants);
 						}
 
 						chatItems.push({
@@ -413,17 +657,31 @@ function loadMainMenuChats(offset) {
 	loadChats(function(chats) {
 		var menuItems = menuItemsBefore.concat(chatItems, !allChatsLoaded ? menuItemsAfter : null);
 
+		var destroyedOldMenu = false;
 		if (mainMenu) {
-			mainMenu.items(0, menuItems);
-		} else {
-			mainMenu = new UI.Menu({
-				sections: [{
-					items: menuItems
-				}],
-				highlightBackgroundColor: Feature.color("#147EFB", "#000000"),
-				highlightTextColor: "white"
-			});
+			// BUG: This causes the menu to hide itself, exiting the app, even though we call show below??
+			//mainMenu.items(0, menuItems);
+			mainMenu.hide(); // the old one
+			destroyedOldMenu = true;
 		}
+
+		mainMenu = new UI.Menu({
+			sections: [{
+				items: menuItems
+			}],
+			highlightBackgroundColor: Feature.color("#147EFB", "#000000"),
+			highlightTextColor: "white"
+		});
+		mainMenu.on("show", function() {
+			// Reload the chat list
+			if (mainMenuIsStale) {
+				mainMenuIsStale = false;
+				chatItems = [];
+				loadedChatItemsCount = 0;
+				allChatsLoaded = false;
+				loadMainMenuChats(0);
+			}
+		});
 
 		mainMenu.on("select", function(e) {
 			if (e.item.title == "BlueBubbles") {
@@ -431,14 +689,15 @@ function loadMainMenuChats(offset) {
 			} else if (e.item.title == "Load more...") {
 				showMainMenu(loadedChatItemsCount);
 			} else {
-				doReply(e.item.guid, e.item.title);
+				showChatThread(e.item.guid, e.item.title, 0);
+				//doReply(e.item.guid, e.item.title);
 			}
 		});
 	
 		mainMenu.show();
 
-		if (offset > 0) {
-			mainMenu.selection(0, oldLoadMoreIndex);
+		if (offset > 0 || destroyedOldMenu) {
+			mainMenu.selection(0, destroyedOldMenu ? 1 : oldLoadMoreIndex);
 		}
 	}, offset);
 }
