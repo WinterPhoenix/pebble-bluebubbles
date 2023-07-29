@@ -55,8 +55,8 @@
 		"emery"
 	],
 	"uuid": "a6a9cf9c-6c15-4955-abe2-693e36681c53",
-	"versionCode": 1.2,
-	"versionLabel": "1.2",
+	"versionCode": 1.21,
+	"versionLabel": "1.2.1",
 	"watchapp": {
 		"watchface": false
 	}

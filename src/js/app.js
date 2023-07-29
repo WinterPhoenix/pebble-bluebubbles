@@ -1,4 +1,4 @@
-var version = "1.2";
+var version = "1.2.1";
 
 // Demo Mode, pretty much just used for taking screenshots in emulator
 var demoMode = false;
@@ -311,6 +311,14 @@ function doReply(chatGUID, chatName) {
 var loadedMessagesCount = 0;
 var allMessagesLoaded = false;
 function loadChatThread(chatGUID, offset, callback) {
+	if (demoMode) {
+		callback([
+			{displayName: "Alice Finnegan", text: "When do you want to get drinks?", dateCreated: new Date().getTime() - 3691000},
+			{isFromMe: true, text: "Great, thanks!", dateCreated: new Date().getTime() - 7201000},
+		]);
+		return;
+	}
+
 	if (offset == 0) {
 		fetchMessagesCard.show();
 	}
@@ -398,7 +406,7 @@ function showChatThread(chatGUID, chatName, offset) {
 		// Run in reverse since we need to have the most recent messages at the top
 		for (var i = 0; i < messages.length; i++) {
 			var msg = messages[i];
-			var displayName = msg.isFromMe ? "You" : msg.groupName != null ? msg.groupName : "";
+			var displayName = msg.isFromMe ? "You" : demoMode ? msg.displayName : "";
 			var text = msg.text != null ? msg.text : "";
 
 			if (text == "") {
@@ -429,34 +437,34 @@ function showChatThread(chatGUID, chatName, offset) {
 
 				var displayNameText = new UI.Text({
 					position: new Vector2(2, renderedMessagesCount * msgHeight),
-					size: new Vector2(chatWindowSize.x - 2, 18),
+					size: new Vector2(chatWindowSize.x - 4, 18),
 					font: "gothic-18-bold",
 					text: displayName,
 					textOverflow: "ellipsis",
-					textAlign: "left",
-					color: "black"
+					textAlign: Feature.round("right", "left"),
+					color: msg.isFromMe ? Feature.color("black", "white") : "black"
 				});
 				chatWindow.add(displayNameText);
 
 				var msgText = new UI.Text({
 					position: new Vector2(2, renderedMessagesCount * msgHeight + 20),
-					size: new Vector2(chatWindowSize.x - 2, msgHeight - 42),
+					size: new Vector2(chatWindowSize.x - 4, msgHeight - 42),
 					font: "gothic-18-bold",
 					text: text,
 					textOverflow: "ellipsis",
-					textAlign: "left",
-					color: "black"
+					textAlign: Feature.round("right", "left"),
+					color: msg.isFromMe ? Feature.color("black", "white") : "black"
 				});
 				chatWindow.add(msgText);
 
 				var timestampText = new UI.Text({
 					position: new Vector2(2, renderedMessagesCount * msgHeight + msgHeight - 24),
-					size: new Vector2(chatWindowSize.x - 2, 18),
+					size: new Vector2(chatWindowSize.x - 4, 18),
 					font: "gothic-18",
 					text: getTimestampText(msg.dateCreated),
 					textOverflow: "fill",
-					textAlign: "left",
-					color: "black"
+					textAlign: Feature.round("right", "left"),
+					color: msg.isFromMe ? Feature.color("black", "white") : "black"
 				});
 				chatWindow.add(timestampText);
 
@@ -784,15 +792,18 @@ function initAppDemo() {
 	chatItems = [
 		{
 			title: "Alice, Bob",
-			subtitle: "When do you want to get drinks?"
+			subtitle: "When do you want to get drinks?",
+			guid: "iMessage;"
 		},
 		{
 			title: "Bill Lumbergh",
-			subtitle: "Hello Peter. What's happening?"
+			subtitle: "Hello Peter. What's happening?",
+			guid: "SMS;"
 		},
 		{
 			title: "Misato Katsuragi",
-			subtitle: "Get in the Eva."
+			subtitle: "Get in the Eva.",
+			guid: "iMessage;"
 		},
 	];
 
