@@ -1,4 +1,4 @@
-var version = "1.2.1";
+var version = "1.3";
 
 // Demo Mode, pretty much just used for taking screenshots in emulator
 var demoMode = false;
