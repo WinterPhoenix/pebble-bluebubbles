@@ -414,6 +414,11 @@ function showChatThread(chatGUID, chatName, offset) {
 					displayName = getDisplayNameFromParticipants([msg.handle]);
 				}
 
+				// BUG: If strings are too long, it crashes the app
+				// 128 is arbitrary, just because it's not realistic we'll show more than it right now
+				displayName = displayName.substring(0, 128);
+				text = text.substring(0, 128);
+
 				// There's a gap here to create the appearance of a separator
 				var msgBackground = new UI.Rect({
 					position: new Vector2(0, renderedMessagesCount * msgHeight + (renderedMessagesCount > 0 ? 2 : 0)),
@@ -594,6 +599,11 @@ function loadChats(callback, offset) {
 						if (displayName == "") {
 							displayName = getDisplayNameFromParticipants(chat.participants);
 						}
+
+						// BUG: If strings are too long, it crashes the app
+						// 128 is arbitrary, just because it's not realistic we'll show more than it right now
+						displayName = displayName.substring(0, 128);
+						lastMessage = lastMessage.substring(0, 128);
 
 						chatItems.push({
 							title: displayName,
